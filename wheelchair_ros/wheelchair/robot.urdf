@@ -1,397 +1,613 @@
 <?xml version="1.0" ?>
 <!-- Generated using onshape-to-robot -->
 <!-- Onshape document_id: 60254bbc48375c7f6772d56f -->
-<robot name="nishcorp_wheelchair">
+<robot name="nishcorp_wheelchair" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Link fiberglass_seat_v3_v9 -->
   <link name="fiberglass_seat_v3_v9">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="5.0" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
     <!-- Part fiberglass_seat_v3_v9 -->
     <visual>
-      <origin xyz="-0.00136916 -0.134916 0.0439822" rpy="1.23682e-16 1.54053e-17 1.00166e-15"/>
+      <origin
+                xyz="-0.00136916 -0.134916 0.0439822"
+                rpy="1.23682e-16 1.54053e-17 1.00166e-15"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9.stl"
+                />
       </geometry>
       <material name="fiberglass_seat_v3_v9_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-0.00136916 -0.134916 0.0439822" rpy="1.23682e-16 1.54053e-17 1.00166e-15"/>
+      <origin
+                xyz="-0.00136916 -0.134916 0.0439822"
+                rpy="1.23682e-16 1.54053e-17 1.00166e-15"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9.stl"
+                />
       </geometry>
     </collision>
     <!-- Part fiberglass_seat_v3_v9_2 -->
     <visual>
-      <origin xyz="8.13252e-17 -0.133159 0.03" rpy="1.17961e-16 1.54053e-17 1.49241e-17"/>
+      <origin
+                xyz="8.13252e-17 -0.133159 0.03"
+                rpy="1.17961e-16 1.54053e-17 1.49241e-17"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9__2.stl"
+                />
       </geometry>
       <material name="fiberglass_seat_v3_v9_2_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="8.13252e-17 -0.133159 0.03" rpy="1.17961e-16 1.54053e-17 1.49241e-17"/>
+      <origin
+                xyz="8.13252e-17 -0.133159 0.03"
+                rpy="1.17961e-16 1.54053e-17 1.49241e-17"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/fiberglass_seat_v3_v9__2.stl"
+                />
       </geometry>
     </collision>
   </link>
+
+  <!-- Add world link for Gazebo -->
+  <link name="world" />
+
+  <!-- Fixed joint to world -->
+  <joint name="world_to_base" type="fixed">
+    <parent link="world" />
+    <child link="fiberglass_seat_v3_v9" />
+    <origin xyz="0 0 0.5" rpy="0 0 0" />
+  </joint>
+
   <!-- Link shaft_v2 -->
   <link name="shaft_v2">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
     </inertial>
     <!-- Part shaft_v2 -->
     <visual>
-      <origin xyz="0.0244498 0.0708618 -0.3" rpy="1.5708 -1.79463e-31 -3.9443e-31"/>
+      <origin
+                xyz="0.0244498 0.0708618 -0.3"
+                rpy="1.5708 -1.79463e-31 -3.9443e-31"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/shaft_v2.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/shaft_v2.stl" />
       </geometry>
       <material name="shaft_v2_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="0.0244498 0.0708618 -0.3" rpy="1.5708 -1.79463e-31 -3.9443e-31"/>
+      <origin
+                xyz="0.0244498 0.0708618 -0.3"
+                rpy="1.5708 -1.79463e-31 -3.9443e-31"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/shaft_v2.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/shaft_v2.stl" />
       </geometry>
     </collision>
   </link>
   <!-- Joint from fiberglass_seat_v3_v9 to shaft_v2 -->
   <joint name="j1" type="revolute">
-    <origin xyz="-0.161102 -0.225441 0.147797" rpy="-1.5708 2.66454e-15 1.5708"/>
-    <parent link="fiberglass_seat_v3_v9"/>
-    <child link="shaft_v2"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-3.14159" upper="0"/>
+    <origin
+            xyz="-0.161102 -0.225441 0.147797"
+            rpy="-1.5708 2.66454e-15 1.5708"
+        />
+    <parent link="fiberglass_seat_v3_v9" />
+    <child link="shaft_v2" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="10" lower="-3.14159" upper="0" />
   </joint>
   <!-- Link component24_1 -->
   <link name="component24_1">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="2.0" />
+      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05" />
     </inertial>
     <!-- Part component24_1 -->
     <visual>
-      <origin xyz="-0.0374601 0.183359 0.0656458" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-0.0374601 0.183359 0.0656458" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component24_1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component24_1.stl"
+                />
       </geometry>
       <material name="component24_1_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-0.0374601 0.183359 0.0656458" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-0.0374601 0.183359 0.0656458" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component24_1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component24_1.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Link untitled_v1 -->
   <link name="untitled_v1">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
     </inertial>
     <!-- Part untitled_v1 -->
     <visual>
-      <origin xyz="-5.55112e-17 -2.77556e-17 -0.005" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-5.55112e-17 -2.77556e-17 -0.005" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"
+                />
       </geometry>
       <material name="untitled_v1_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-5.55112e-17 -2.77556e-17 -0.005" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-5.55112e-17 -2.77556e-17 -0.005" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Link zzzzzzz_v1 -->
   <link name="zzzzzzz_v1">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.5" />
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005" />
     </inertial>
     <!-- Part zzzzzzz_v1 -->
     <visual>
-      <origin xyz="-0.197309 0.210554 0.419184" rpy="-1.5708 6.02782e-31 3.14159"/>
+      <origin
+                xyz="-0.197309 0.210554 0.419184"
+                rpy="-1.5708 6.02782e-31 3.14159"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"
+                />
       </geometry>
       <material name="zzzzzzz_v1_material">
-        <color rgba="0.34902 0.34902 0.34902 1.0"/>
+        <color rgba="0.34902 0.34902 0.34902 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-0.197309 0.210554 0.419184" rpy="-1.5708 6.02782e-31 3.14159"/>
+      <origin
+                xyz="-0.197309 0.210554 0.419184"
+                rpy="-1.5708 6.02782e-31 3.14159"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Joint from untitled_v1 to zzzzzzz_v1 -->
-  <joint name="j7" type="revolute">
-    <origin xyz="-0.268116 0.224976 -0.01" rpy="-5.09833e-32 4.32183e-32 -1.01465e-17"/>
-    <parent link="untitled_v1"/>
-    <child link="zzzzzzz_v1"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  <joint name="j7" type="continuous">
+    <origin
+            xyz="-0.268116 0.224976 -0.01"
+            rpy="-5.09833e-32 4.32183e-32 -1.01465e-17"
+        />
+    <parent link="untitled_v1" />
+    <child link="zzzzzzz_v1" />
+    <axis xyz="0 0 1" />
   </joint>
   <!-- Joint from component24_1 to untitled_v1 -->
   <joint name="j4" type="revolute">
-    <origin xyz="0.370405 0.106628 -0.0173542" rpy="1.35007e-15 5.19241e-16 0.785398"/>
-    <parent link="component24_1"/>
-    <child link="untitled_v1"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-1.5708" upper="0"/>
+    <origin
+            xyz="0.370405 0.106628 -0.0173542"
+            rpy="1.35007e-15 5.19241e-16 0.785398"
+        />
+    <parent link="component24_1" />
+    <child link="untitled_v1" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="10" lower="-1.5708" upper="0" />
   </joint>
-  <!-- Link component1 -->
+  <!-- Link component1 (Wheel) -->
   <link name="component1">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="3.0" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
     <!-- Part component1 -->
     <visual>
-      <origin xyz="2.77556e-17 -6.66134e-16 -0.01" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="2.77556e-17 -6.66134e-16 -0.01" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1.stl"
+                />
       </geometry>
       <material name="component1_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="2.77556e-17 -6.66134e-16 -0.01" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="2.77556e-17 -6.66134e-16 -0.01" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1.stl"
+                />
       </geometry>
     </collision>
     <!-- Part tyre_v7 -->
     <visual>
-      <origin xyz="0 0 -0.01" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="0 0 -0.01" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl" />
       </geometry>
       <material name="tyre_v7_material">
-        <color rgba="0.247059 0.247059 0.247059 1.0"/>
+        <color rgba="0.247059 0.247059 0.247059 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 -0.01" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="0 0 -0.01" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl" />
       </geometry>
     </collision>
     <!-- Part component1_2 -->
     <visual>
-      <origin xyz="-2.77556e-17 -4.44089e-16 -0.01" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="-2.77556e-17 -4.44089e-16 -0.01" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1__2.stl"
+                />
       </geometry>
       <material name="component1_2_material">
-        <color rgba="0.247059 0.247059 0.247059 1.0"/>
+        <color rgba="0.247059 0.247059 0.247059 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-2.77556e-17 -4.44089e-16 -0.01" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="-2.77556e-17 -4.44089e-16 -0.01" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1__2.stl"
+                />
       </geometry>
     </collision>
   </link>
-  <!-- Joint from component24_1 to component1 -->
-  <joint name="j9" type="revolute">
-    <origin xyz="0.66254 0.053359 -0.0303542" rpy="6.18997e-17 -8.0744e-20 -1.5708"/>
-    <parent link="component24_1"/>
-    <child link="component1"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  <!-- Joint from component24_1 to component1 (Wheel joint) -->
+  <joint name="j9" type="continuous">
+    <origin
+            xyz="0.66254 0.053359 -0.0303542"
+            rpy="6.18997e-17 -8.0744e-20 -1.5708"
+        />
+    <parent link="component24_1" />
+    <child link="component1" />
+    <axis xyz="0 0 1" />
   </joint>
   <!-- Joint from fiberglass_seat_v3_v9 to component24_1 -->
   <joint name="j2" type="revolute">
-    <origin xyz="0.278959 -0.113245 -0.0128467" rpy="-1.5708 -5.7471e-16 1.5708"/>
-    <parent link="fiberglass_seat_v3_v9"/>
-    <child link="component24_1"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="0" upper="1.5708"/>
+    <origin
+            xyz="0.278959 -0.113245 -0.0128467"
+            rpy="-1.5708 -5.7471e-16 1.5708"
+        />
+    <parent link="fiberglass_seat_v3_v9" />
+    <child link="component24_1" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="10" lower="0" upper="1.5708" />
   </joint>
   <!-- Link component24_1_2 -->
   <link name="component24_1_2">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="2.0" />
+      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05" />
     </inertial>
     <!-- Part component24_1_2 -->
     <visual>
-      <origin xyz="-0.0374601 0.183359 0.431354" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-0.0374601 0.183359 0.431354" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component24_1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component24_1__2.stl"
+                />
       </geometry>
       <material name="component24_1_2_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="-0.0374601 0.183359 0.431354" rpy="1.5708 1.5708 0"/>
+      <origin xyz="-0.0374601 0.183359 0.431354" rpy="1.5708 1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component24_1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component24_1__2.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Link untitled_v1_2 -->
   <link name="untitled_v1_2">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
     </inertial>
     <!-- Part untitled_v1_2 -->
     <visual>
-      <origin xyz="5.55112e-17 -1.38778e-17 -0.005" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -1.38778e-17 -0.005" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"
+                />
       </geometry>
       <material name="untitled_v1_2_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="5.55112e-17 -1.38778e-17 -0.005" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -1.38778e-17 -0.005" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/untitled_v1.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Link zzzzzzz_v1_2 -->
   <link name="zzzzzzz_v1_2">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.5" />
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005" />
     </inertial>
     <!-- Part zzzzzzz_v1_2 -->
     <visual>
-      <origin xyz="0.197309 -0.210554 0.429184" rpy="-1.5708 5.24974e-32 1.01465e-17"/>
+      <origin
+                xyz="0.197309 -0.210554 0.429184"
+                rpy="-1.5708 5.24974e-32 1.01465e-17"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"
+                />
       </geometry>
       <material name="zzzzzzz_v1_2_material">
-        <color rgba="0.34902 0.34902 0.34902 1.0"/>
+        <color rgba="0.34902 0.34902 0.34902 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="0.197309 -0.210554 0.429184" rpy="-1.5708 5.24974e-32 1.01465e-17"/>
+      <origin
+                xyz="0.197309 -0.210554 0.429184"
+                rpy="-1.5708 5.24974e-32 1.01465e-17"
+            />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/zzzzzzz_v1.stl"
+                />
       </geometry>
     </collision>
   </link>
   <!-- Joint from untitled_v1_2 to zzzzzzz_v1_2 -->
-  <joint name="j6" type="revolute">
-    <origin xyz="-0.268116 -0.224976 -0.02" rpy="7.92467e-30 -1.20439e-30 -3.14159"/>
-    <parent link="untitled_v1_2"/>
-    <child link="zzzzzzz_v1_2"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  <joint name="j6" type="continuous">
+    <origin
+            xyz="-0.268116 -0.224976 -0.02"
+            rpy="7.92467e-30 -1.20439e-30 -3.14159"
+        />
+    <parent link="untitled_v1_2" />
+    <child link="zzzzzzz_v1_2" />
+    <axis xyz="0 0 1" />
   </joint>
   <!-- Joint from component24_1_2 to untitled_v1_2 -->
   <joint name="j5" type="revolute">
-    <origin xyz="0.370405 0.106628 0.0263542" rpy="3.14159 1.36174e-16 0.785398"/>
-    <parent link="component24_1_2"/>
-    <child link="untitled_v1_2"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="0" upper="1.5708"/>
+    <origin
+            xyz="0.370405 0.106628 0.0263542"
+            rpy="3.14159 1.36174e-16 0.785398"
+        />
+    <parent link="component24_1_2" />
+    <child link="untitled_v1_2" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="10" lower="0" upper="1.5708" />
   </joint>
-  <!-- Link component1_2 -->
+  <!-- Link component1_2 (Wheel) -->
   <link name="component1_2">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1e-09"/>
-      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="3.0" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
     <!-- Part component1_3 -->
     <visual>
-      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1__2.stl"
+                />
       </geometry>
       <material name="component1_3_material">
-        <color rgba="0.247059 0.247059 0.247059 1.0"/>
+        <color rgba="0.247059 0.247059 0.247059 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1__2.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1__2.stl"
+                />
       </geometry>
     </collision>
     <!-- Part component1_4 -->
     <visual>
-      <origin xyz="1.66533e-16 -1.11022e-16 0.025" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="1.66533e-16 -1.11022e-16 0.025" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1.stl"
+                />
       </geometry>
       <material name="component1_4_material">
-        <color rgba="0.784314 0.556863 0.027451 1.0"/>
+        <color rgba="0.784314 0.556863 0.027451 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="1.66533e-16 -1.11022e-16 0.025" rpy="-2.82743 -1.5708 0"/>
+      <origin xyz="1.66533e-16 -1.11022e-16 0.025" rpy="-2.82743 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/component1.stl"/>
+        <mesh
+                    filename="package://wheelchair/wheelchair/assets/component1.stl"
+                />
       </geometry>
     </collision>
     <!-- Part tyre_v7_2 -->
     <visual>
-      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl" />
       </geometry>
       <material name="tyre_v7_2_material">
-        <color rgba="0.247059 0.247059 0.247059 1.0"/>
+        <color rgba="0.247059 0.247059 0.247059 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-1.5708 -1.5708 0"/>
+      <origin xyz="5.55112e-17 -5.55112e-17 0.025" rpy="-1.5708 -1.5708 0" />
       <geometry>
-        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl"/>
+        <mesh filename="package://wheelchair/wheelchair/assets/tyre_v7.stl" />
       </geometry>
     </collision>
   </link>
-  <!-- Joint from component24_1_2 to component1_2 -->
-  <joint name="j8" type="revolute">
-    <origin xyz="0.66254 0.053359 0.0273542" rpy="-5.65603e-18 9.09612e-17 0.652399"/>
-    <parent link="component24_1_2"/>
-    <child link="component1_2"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  <!-- Joint from component24_1_2 to component1_2 (Wheel joint) -->
+  <joint name="j8" type="continuous">
+    <origin
+            xyz="0.66254 0.053359 0.0273542"
+            rpy="-5.65603e-18 9.09612e-17 0.652399"
+        />
+    <parent link="component24_1_2" />
+    <child link="component1_2" />
+    <axis xyz="0 0 1" />
   </joint>
   <!-- Joint from fiberglass_seat_v3_v9 to component24_1_2 -->
   <joint name="j3" type="revolute">
-    <origin xyz="-0.284197 -0.113245 -0.0128467" rpy="-1.5708 -1.11022e-16 1.5708"/>
-    <parent link="fiberglass_seat_v3_v9"/>
-    <child link="component24_1_2"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="10" velocity="10" lower="0" upper="1.5708"/>
+    <origin
+            xyz="-0.284197 -0.113245 -0.0128467"
+            rpy="-1.5708 -1.11022e-16 1.5708"
+        />
+    <parent link="fiberglass_seat_v3_v9" />
+    <child link="component24_1_2" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="10" lower="0" upper="1.5708" />
   </joint>
+
+  <!-- ROS2 Control configuration -->
+  <ros2_control name="IgnitionSystem" type="system">
+    <hardware>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+    </hardware>
+
+    <!-- Wheel joints (j6, j7, j8, j9) -->
+    <joint name="j6">
+      <command_interface name="velocity" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j7">
+      <command_interface name="velocity" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j8">
+      <command_interface name="velocity" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j9">
+      <command_interface name="velocity" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <!-- Other joints (j1-j5) -->
+    <joint name="j1">
+      <command_interface name="position" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j2">
+      <command_interface name="position" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j3">
+      <command_interface name="position" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j4">
+      <command_interface name="position" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="j5">
+      <command_interface name="position" />
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+  </ros2_control>
+
+  <!-- Gazebo plugin for Ignition -->
+  <gazebo>
+    <plugin
+            name="ign_ros2_control::IgnitionROS2ControlPlugin"
+            filename="libign_ros2_control-system.so"
+        >
+      <parameters>$(find wheelchair)/config/wheelchair.yaml</parameters>
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <controller_manager_name>controller_manager</controller_manager_name>
+    </plugin>
+  </gazebo>
+
 </robot>
