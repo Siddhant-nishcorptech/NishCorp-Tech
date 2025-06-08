@@ -73,7 +73,7 @@ This will start the visualization node(s), typically opening RViz with a pre-con
 
 Below is an example screenshot of the expected output when running `display.launch.py`:
 
-![Wheelchair Visualization Example](docs/wheelchair_rviz_example.png)
+![Wheelchair Visualization Example](wheelchair_ros/docs/wheelchair_rviz_example.png)
 
 ---
 
