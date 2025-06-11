@@ -63,16 +63,6 @@
     </collision>
   </link>
 
-  <!-- Add world link for Gazebo -->
-  <link name="world" />
-
-  <!-- Fixed joint to world -->
-  <joint name="world_to_base" type="fixed">
-    <parent link="world" />
-    <child link="fiberglass_seat_v3_v9" />
-    <origin xyz="0 0 0.5" rpy="0 0 0" />
-  </joint>
-
   <!-- Link shaft_v2 -->
   <link name="shaft_v2">
     <inertial>

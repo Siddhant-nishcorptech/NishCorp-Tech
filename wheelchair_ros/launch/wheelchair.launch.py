@@ -2,7 +2,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, RegisterEventHandler, TimerAction
 from launch.substitutions import Command
 from launch_ros.actions import Node
 from launch.event_handlers import OnProcessStart, OnProcessExit
@@ -81,11 +81,10 @@ def generate_launch_description():
         )
     )
 
-    delay_wheel_controller = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
-            on_exit=[wheel_controller_spawner],
-        )
+    # Delay wheel_controller_spawner by 5 seconds to ensure Gazebo is ready
+    delayed_wheel_controller = TimerAction(
+        period=5.0,
+        actions=[wheel_controller_spawner]
     )
 
     delay_position_controller = RegisterEventHandler(
@@ -100,6 +99,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         spawn_robot,
         delay_joint_state_broadcaster,
-        delay_wheel_controller,
+        delayed_wheel_controller,
         delay_position_controller
     ])
