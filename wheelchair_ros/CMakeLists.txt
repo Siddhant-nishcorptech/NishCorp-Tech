@@ -8,4 +8,9 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS scripts/joint_position_controller.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()
