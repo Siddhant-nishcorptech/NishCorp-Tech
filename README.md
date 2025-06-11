@@ -1,13 +1,16 @@
 # NishCorp-Tech Wheelchair ROS 2 Package
 
-A ROS 2 package for robotic wheelchair control and visualization, developed by NishCorp-Tech. This package provides nodes and launch files for controlling, monitoring, and visualizing a robotic wheelchair platform.
+A ROS 2 package for robotic wheelchair control, simulation, and visualization, developed by NishCorp-Tech. This package provides nodes and launch files for controlling, monitoring, and visualizing a robotic wheelchair platform in both RViz and Gazebo Ignition.
 
 ---
 
 ## Features
 
-- ROS 2 nodes for wheelchair control and monitoring
-- Visualization via RViz or similar tools
+- Complete ROS 2 control system for wheelchair operation
+- Position control for seat rotation, arms, and footrests
+- Velocity control for all four wheels
+- Visualization in RViz
+- Full physics simulation in Gazebo Ignition
 - Example launch files for quick startup
 - Modular and extensible design
 
@@ -15,10 +18,13 @@ A ROS 2 package for robotic wheelchair control and visualization, developed by N
 
 ## Requirements
 
-- ROS 2 Humble Hawksbill (or later)
-- Python 3.8+ (if using Python nodes)
+- ROS 2 Humble Hawksbill
+- Python 3.8+
 - Colcon build system
-- RViz (for visualization)
+- RViz2
+- Gazebo Ignition
+- ros2_control and ros2_controllers
+- ros_ign_gazebo
 
 ---
 
@@ -33,8 +39,6 @@ A ROS 2 package for robotic wheelchair control and visualization, developed by N
 
 2. **Install dependencies:**
 
-    If your package has dependencies listed in `package.xml`, install them with:
-
     ```bash
     cd ~/ros2_ws
     rosdep install --from-paths src --ignore-src -r -y
@@ -44,7 +48,7 @@ A ROS 2 package for robotic wheelchair control and visualization, developed by N
 
     ```bash
     cd ~/ros2_ws
-    colcon build --packages-select wheelchair
+    colcon build --packages-select wheelchair_ros
     ```
 
 4. **Source your workspace:**
@@ -57,34 +61,60 @@ A ROS 2 package for robotic wheelchair control and visualization, developed by N
 
 ## Usage
 
-### Running the Visualization
+### Running the RViz Visualization
 
-To launch the display (visualization) for the wheelchair, use the provided `display.launch.py` file:
+To launch the display (visualization) for the wheelchair in RViz:
 
 ```bash
-ros2 launch wheelchair display.launch.py
+ros2 launch wheelchair_ros display.launch.py
 ```
 
-This will start the visualization node(s), typically opening RViz with a pre-configured display for the wheelchair.
+### Running the Gazebo Simulation
+
+To launch the wheelchair in Gazebo Ignition with full physics simulation:
+
+```bash
+ros2 launch wheelchair_ros wheelchair_gazebo.launch.py
+```
+
+This will start Gazebo Ignition with the wheelchair model and all necessary controllers.
 
 ---
 
 ## Example Output
 
-Below is an example screenshot of the expected output when running `display.launch.py`:
-
+### RViz Visualization
 ![Wheelchair Visualization Example](wheelchair_ros/docs/wheelchair_rviz_example.png)
+
+### Gazebo Simulation
+![Wheelchair Gazebo Simulation](wheelchair_ros/docs/gazebo_1.gif)
 
 ---
 
-## Nodes
+## Controllers
 
-- **wheelchair_controller**: Main node for controlling the wheelchair (details in source)
-- **wheelchair_monitor**: Node for monitoring wheelchair status (details in source)
+The package includes two main controller groups:
+
+### Position Controllers
+- **Seat Rotation (j1)**: Controls the seat's rotation
+- **Arms (j2, j3)**: Controls both wheelchair arms
+- **Footrests (j4, j5)**: Controls both footrests
+
+### Velocity Controllers
+- **Wheel Control (j6, j7, j8, j9)**: Controls all four wheels independently
 
 ---
 
 ## Launch Files
 
-- **display.launch.py**: Launches visualization (RViz) for the wheelchair
-- **working on gazebo launch**
+- **display.launch.py**: Launches RViz visualization
+- **wheelchair.launch.py**: Core wheelchair control and state publishing
+- **wheelchair_gazebo.launch.py**: Launches Gazebo simulation with physics
+
+---
+
+## Configuration
+
+The package uses YAML configuration files located in the `config` directory:
+- **wheelchair.yaml**: Controller configurations
+- **urdf.rviz**: RViz visualization settings
