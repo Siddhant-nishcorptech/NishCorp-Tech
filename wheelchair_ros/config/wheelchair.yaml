@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 1000 # Hz (increased to match Gazebo's default 0.001s period)
+    update_rate: 100 # Increased frequency for better control
     use_sim_time: true
 
     joint_state_broadcaster:
@@ -24,6 +24,7 @@ joint_state_broadcaster:
       - j7
       - j8
       - j9
+    publish_rate: 50.0
 
 wheel_controller:
   ros__parameters:
@@ -37,6 +38,12 @@ wheel_controller:
     state_interfaces:
       - position
       - velocity
+    # PID gains for velocity control
+    gains:
+      j6: { p: 100.0, i: 10.0, d: 10.0 }
+      j7: { p: 100.0, i: 10.0, d: 10.0 }
+      j8: { p: 100.0, i: 10.0, d: 10.0 }
+      j9: { p: 100.0, i: 10.0, d: 10.0 }
 
 position_controller:
   ros__parameters:
@@ -51,3 +58,10 @@ position_controller:
     state_interfaces:
       - position
       - velocity
+    # PID gains for position control
+    gains:
+      j1: { p: 1000.0, i: 50.0, d: 100.0 }
+      j2: { p: 1000.0, i: 50.0, d: 100.0 }
+      j3: { p: 1000.0, i: 50.0, d: 100.0 }
+      j4: { p: 1000.0, i: 50.0, d: 100.0 }
+      j5: { p: 1000.0, i: 50.0, d: 100.0 }

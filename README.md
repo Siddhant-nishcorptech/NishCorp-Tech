@@ -66,7 +66,7 @@ A ROS 2 package for robotic wheelchair control, simulation, and visualization, d
 To launch the display (visualization) for the wheelchair in RViz:
 
 ```bash
-ros2 launch wheelchair_ros display.launch.py
+ros2 launch wheelchair display.launch.py
 ```
 
 ### Running the Gazebo Simulation
@@ -74,10 +74,29 @@ ros2 launch wheelchair_ros display.launch.py
 To launch the wheelchair in Gazebo Ignition with full physics simulation:
 
 ```bash
-ros2 launch wheelchair_ros wheelchair_gazebo.launch.py
+ros2 launch wheelchair wheelchair_gazebo.launch.py
 ```
 
 This will start Gazebo Ignition with the wheelchair model and all necessary controllers.
+
+### Running the Teleop Controller
+
+To control the wheelchair using keyboard inputs, follow these steps:
+
+1. Launch the Gazebo simulation:
+```bash
+ros2 launch wheelchair wheelchair_gazebo.launch.py
+```
+
+2. Launch the wheelchair control:
+```bash
+ros2 launch wheelchair wheelchair_control.launch.py
+```
+
+3. Run the teleop controller:
+```bash
+ros2 run wheelchair teleop_controller.py
+```
 
 ---
 
@@ -88,6 +107,9 @@ This will start Gazebo Ignition with the wheelchair model and all necessary cont
 
 ### Gazebo Simulation
 ![Wheelchair Gazebo Simulation](wheelchair_ros/docs/gazebo_1.gif)
+
+### Teleop Control
+![Wheelchair Teleop Control](wheelchair_ros/docs/teleop_control.gif)
 
 ---
 
