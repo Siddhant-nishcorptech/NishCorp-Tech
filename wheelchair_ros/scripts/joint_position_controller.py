@@ -42,7 +42,7 @@ class WheelchairController(Node):
                 'wheels': [0.0, 0.0, 0.0, 0.0]
             },
             'standing_prep': {
-                'j1-j5': [-0.5, 0.3, 0.3, -0.5, 0.5],  # Gentle standing preparation
+                'j1-j5': [-1.2, 0.3, 0.3, -0.5, 0.5],  # Gentle standing preparation
                 'wheels': [0.0, 0.0, 0.0, 0.0]
             },
             'standing': {
@@ -50,23 +50,23 @@ class WheelchairController(Node):
                 'wheels': [0.0, 0.0, 0.0, 0.0]
             },
             'forward_slow': {
-                'j1-j5': [0.0, 0.0, 0.0, 0.0, 0.0],
+                'j1-j5': [-1.2, 0.8, 0.8, -1.0, 1.0],
                 'wheels': [1.0, 1.0, 1.0, 1.0]  # Slow forward movement
             },
             'forward_fast': {
-                'j1-j5': [0.0, 0.0, 0.0, 0.0, 0.0],
+                'j1-j5': [-1.2, 0.8, 0.8, -1.0, 1.0],
                 'wheels': [3.0, 3.0, 3.0, 3.0]  # Fast forward movement
             },
             'turn_left': {
-                'j1-j5': [0.0, 0.0, 0.0, 0.0, 0.0],
+                'j1-j5': [-1.2, 0.8, 0.8, -1.0, 1.0],
                 'wheels': [-1.0, -1.0, 1.0, 1.0]  # Turn left
             },
             'turn_right': {
-                'j1-j5': [0.0, 0.0, 0.0, 0.0, 0.0],
+                'j1-j5': [-1.2, 0.8, 0.8, -1.0, 1.0],
                 'wheels': [1.0, 1.0, -1.0, -1.0]  # Turn right
             },
             'backward': {
-                'j1-j5': [0.0, 0.0, 0.0, 0.0, 0.0],
+                'j1-j5': [-1.2, 0.8, 0.8, -1.0, 1.0],
                 'wheels': [-2.0, -2.0, -2.0, -2.0]  # Backward movement
             }
         }
@@ -159,17 +159,17 @@ class WheelchairController(Node):
         # Define demo sequence with timing
         demo_sequence = [
             (0, 'rest', 'Starting in rest position'),
-            (3, 'standing_prep', 'Preparing for standing'),
-            (8, 'standing', 'Moving to standing position'),
-            (13, 'rest', 'Returning to rest'),
-            (18, 'forward_slow', 'Moving forward slowly'),
-            (23, 'rest', 'Stopping'),
-            (28, 'turn_left', 'Turning left'),
-            (33, 'rest', 'Stopping turn'),
-            (38, 'turn_right', 'Turning right'),
-            (43, 'rest', 'Stopping turn'),
-            (48, 'backward', 'Moving backward'),
-            (53, 'rest', 'Final rest position'),
+            (2, 'standing_prep', 'Preparing for standing'),
+            (4, 'standing', 'Moving to standing position'),
+            # (13, 'rest', 'Returning to rest'),
+            (9, 'forward_slow', 'Moving forward slowly'),
+            # (23, 'rest', 'Stopping'),
+            (14, 'turn_left', 'Turning left'),
+            # (33, 'rest', 'Stopping turn'),
+            (19, 'turn_right', 'Turning right'),
+            # (43, 'rest', 'Stopping turn'),
+            (24, 'backward', 'Moving backward'),
+            (34, 'rest', 'Final rest position'),
         ]
 
         for time_point, position, description in demo_sequence:
