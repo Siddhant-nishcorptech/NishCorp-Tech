@@ -2,6 +2,16 @@
 <!-- Generated using onshape-to-robot -->
 <!-- Onshape document_id: 60254bbc48375c7f6772d56f -->
 <robot name="nishcorp_wheelchair" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Base Link - This is the mobile base of the wheelchair -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+    </inertial>
+  </link>
+
   <!-- Link fiberglass_seat_v3_v9 -->
   <link name="fiberglass_seat_v3_v9">
     <inertial>
@@ -62,6 +72,13 @@
       </geometry>
     </collision>
   </link>
+
+  <!-- Joint from base_link to fiberglass_seat_v3_v9 -->
+  <joint name="base_to_seat" type="fixed">
+    <origin xyz="0 0 0.3" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="fiberglass_seat_v3_v9" />
+  </joint>
 
   <!-- Link shaft_v2 -->
   <link name="shaft_v2">
