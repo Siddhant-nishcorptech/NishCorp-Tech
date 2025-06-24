@@ -16,9 +16,13 @@ class TeleopController(Node):
         self.wheel_speeds = [0.0, 0.0, 0.0, 0.0]  # wheel1, wheel2, wheel3, wheel4
         self.joint_states = {
             'rest': [0.0, 0.0, 0.0, 0.0, 0.0],  # Neutral position
-            'standing': [-1.2, 0.8, 0.8, -1.0, 1.0]  # Standing position
+            'standing': [-1.2, 0.6, 0.6, -1.2, 1.2]  # Standing position
         }
         self.current_joint_state = 'rest'
+        self.target_joint_state = 'rest'
+        self.current_joint_positions = [0.0, 0.0, 0.0, 0.0, 0.0]
+        self.joint_speed = 1.0  # Speed of joint movement (radians per second)
+        self.last_joint_update = time.time()
 
         # Publishers
         self.wheel_pub = self.create_publisher(Float64MultiArray, '/wheel_commands', 10)
@@ -34,8 +38,8 @@ class TeleopController(Node):
         self.old_settings = termios.tcgetattr(self.fd)
         tty.setcbreak(self.fd)  # Enable non-blocking input
 
-        # Control loop timer (20 Hz)
-        self.create_timer(0.05, self.control_loop)
+        # Control loop timer (50 Hz for smoother transitions)
+        self.create_timer(0.02, self.control_loop)
 
         # Publish initial joint state
         self.publish_joint_state()
@@ -53,58 +57,80 @@ class TeleopController(Node):
 
     def control_loop(self):
         """Process keyboard inputs and publish commands"""
-        # Initialize wheel speeds (default to stop)
-        temp_speeds = [0.0, 0.0, 0.0, 0.0]
-
-        # Handle wheel control (WASD)
+        # Get key input
         key = self.get_key()
-        if key == 'w':
-            temp_speeds = [self.linear_speed, self.linear_speed, self.linear_speed, self.linear_speed]  # Forward
-        elif key == 's':
-            temp_speeds = [-self.linear_speed, -self.linear_speed, -self.linear_speed, -self.linear_speed]  # Backward
-        elif key == 'a':
-            temp_speeds = [-self.linear_speed, self.linear_speed, -self.linear_speed, self.linear_speed]  # Left turn
-        elif key == 'd':
-            temp_speeds = [self.linear_speed, -self.turn_speed, self.linear_speed, -self.linear_speed]  # Right turn
 
-        # Invert wheel1 speed before publishing
-        wheel_speeds = [-temp_speeds[0], temp_speeds[1], temp_speeds[2], temp_speeds[3]]
+        # Only update wheel speeds if a key is pressed
+        if key is not None:
+            temp_speeds = self.wheel_speeds.copy()  # Maintain previous speeds by default
 
-        # Publish wheel commands if changed
-        if wheel_speeds != self.wheel_speeds:
-            self.wheel_speeds = wheel_speeds
-            wheel_msg = Float64MultiArray()
-            wheel_msg.data = self.wheel_speeds
-            self.wheel_pub.publish(wheel_msg)
-            self.get_logger().info(f'Wheel commands: {self.wheel_speeds}')
+            if key == 'w':
+                temp_speeds = [self.linear_speed, self.linear_speed, self.linear_speed, self.linear_speed]  # Forward
+            elif key == 's':
+                temp_speeds = [-self.linear_speed, -self.linear_speed, -self.linear_speed, -self.linear_speed]  # Backward
+            elif key == 'a':
+                temp_speeds = [-self.linear_speed, self.linear_speed, -self.linear_speed, self.linear_speed]  # Left turn
+            elif key == 'd':
+                temp_speeds = [self.linear_speed, -self.turn_speed, self.linear_speed, -self.linear_speed]  # Right turn
+            elif key == ' ':  # Space to stop
+                temp_speeds = [0.0, 0.0, 0.0, 0.0]
 
-        # Handle joint state toggle (O/P)
-        current_joint_keys = set()
-        if key == 'o':
-            current_joint_keys.add('o')
-        elif key == 'p':
-            current_joint_keys.add('p')
+            # Invert wheel1 speed before publishing
+            wheel_speeds = [-temp_speeds[0], temp_speeds[1], temp_speeds[2], temp_speeds[3]]
 
-        # Detect key press events (edge detection) for joint state toggle
-        if 'o' in current_joint_keys and 'o' not in self.prev_joint_keys:
-            self.current_joint_state = 'rest'
-            self.publish_joint_state()
-        elif 'p' in current_joint_keys and 'p' not in self.prev_joint_keys:
-            self.current_joint_state = 'standing'
-            self.publish_joint_state()
+            # Publish wheel commands if changed
+            if wheel_speeds != self.wheel_speeds:
+                self.wheel_speeds = wheel_speeds
+                wheel_msg = Float64MultiArray()
+                wheel_msg.data = self.wheel_speeds
+                self.wheel_pub.publish(wheel_msg)
+                self.get_logger().info(f'Wheel commands: {self.wheel_speeds}')
 
-        self.prev_joint_keys = current_joint_keys
+            # Handle joint state toggle (O/P)
+            if key == 'o':
+                self.target_joint_state = 'rest'
+                self.joint_speed = 2.0  # Increase speed for downward movement
+            elif key == 'p':
+                self.target_joint_state = 'standing'
+                self.joint_speed = 1.0  # Normal speed for upward movement
+
+        # Update and publish joint positions
+        self.update_joint_positions()
+        self.publish_joint_state()
 
     def publish_joint_state(self):
         """Publish current joint state"""
         joint_msg = Float64MultiArray()
-        joint_msg.data = self.joint_states[self.current_joint_state]
+        joint_msg.data = self.current_joint_positions
         self.joint_pub.publish(joint_msg)
-        self.get_logger().info(f'Joint state: {self.current_joint_state}, Positions: {self.joint_states[self.current_joint_state]}')
+        self.get_logger().debug(f'Joint positions: {self.current_joint_positions}')
+
+    def update_joint_positions(self):
+        """Update joint positions with smooth interpolation"""
+        current_time = time.time()
+        dt = current_time - self.last_joint_update
+        self.last_joint_update = current_time
+
+        target_positions = self.joint_states[self.target_joint_state]
+        max_step = self.joint_speed * dt
+
+        # Calculate new positions with smooth interpolation
+        for i in range(len(self.current_joint_positions)):
+            diff = target_positions[i] - self.current_joint_positions[i]
+            if abs(diff) < max_step:
+                self.current_joint_positions[i] = target_positions[i]
+            else:
+                step = max_step if diff > 0 else -max_step
+                self.current_joint_positions[i] += step
+
+        # Check if we've reached the target state
+        if all(abs(self.current_joint_positions[i] - target_positions[i]) < 0.01 for i in range(len(self.current_joint_positions))):
+            self.current_joint_state = self.target_joint_state
 
     def __del__(self):
         """Restore terminal settings on exit"""
-        termios.tcsetattr(self.fd, termios.TCSADRAIN, self.old_settings)
+        if hasattr(self, 'fd') and hasattr(self, 'old_settings'):
+            termios.tcsetattr(self.fd, termios.TCSADRAIN, self.old_settings)
 
 def main(args=None):
     rclpy.init(args=args)
@@ -118,7 +144,6 @@ def main(args=None):
         wheel_msg = Float64MultiArray()
         wheel_msg.data = [0.0, 0.0, 0.0, 0.0]
         controller.wheel_pub.publish(wheel_msg)
-        controller.__del__()  # Restore terminal settings
         controller.destroy_node()
         rclpy.shutdown()
 

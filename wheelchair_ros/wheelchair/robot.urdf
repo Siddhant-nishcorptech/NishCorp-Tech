@@ -7,8 +7,8 @@
   <link name="base_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0.1" />
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      <mass value="15.0" />
+      <inertia ixx="0.5" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.5" />
     </inertial>
   </link>
 
@@ -16,8 +16,8 @@
   <link name="fiberglass_seat_v3_v9">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="5.0" />
-      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+      <mass value="8.0" />
+      <inertia ixx="0.3" ixy="0" ixz="0" iyy="0.3" iyz="0" izz="0.3" />
     </inertial>
     <!-- Part fiberglass_seat_v3_v9 -->
     <visual>
@@ -84,8 +84,8 @@
   <link name="shaft_v2">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1.0" />
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      <mass value="2.5" />
+      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05" />
     </inertial>
     <!-- Part shaft_v2 -->
     <visual>
@@ -125,8 +125,8 @@
   <link name="component24_1">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="2.0" />
-      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05" />
+      <mass value="4.0" />
+      <inertia ixx="0.15" ixy="0" ixz="0" iyy="0.15" iyz="0" izz="0.15" />
     </inertial>
     <!-- Part component24_1 -->
     <visual>
@@ -153,8 +153,8 @@
   <link name="untitled_v1">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1.0" />
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      <mass value="2.0" />
+      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05" />
     </inertial>
     <!-- Part untitled_v1 -->
     <visual>
@@ -181,8 +181,8 @@
   <link name="zzzzzzz_v1">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0.5" />
-      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005" />
+      <mass value="1.0" />
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.02" />
     </inertial>
     <!-- Part zzzzzzz_v1 -->
     <visual>
@@ -247,8 +247,8 @@
   <link name="component1">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="3.0" />
-      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+      <mass value="5.0" />
+      <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2" />
     </inertial>
     <!-- Part component1 -->
     <visual>
@@ -399,8 +399,8 @@
   <link name="zzzzzzz_v1_2">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0.5" />
-      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005" />
+      <mass value="1.0" />
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.02" />
     </inertial>
     <!-- Part zzzzzzz_v1_2 -->
     <visual>
@@ -465,8 +465,8 @@
   <link name="component1_2">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="3.0" />
-      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+      <mass value="5.0" />
+      <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2" />
     </inertial>
     <!-- Part component1_3 -->
     <visual>
